@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRB Mark Counter</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: system-ui;
+        background-color: aliceblue;
+    }
+    .calculation {
+        width: 400px;
+        background: rgb(255, 255, 255);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgb(190, 190, 190);
+    }
+    .heading {
+        font-size: 2.3rem;
+        color: white;
+        background: rgb(108, 0, 0);
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    .counter {
+        padding-top: 10px;
+        color: white;
+        margin-bottom: 10px;
+        border: 3px solid rgb(67, 145, 155);
+        border-radius: 5px;
+    }
+    .worng_counter {
+        border-color: rgb(208, 0, 0);
+    }
+    .count_btn {
+        background-color: rgb(67, 145, 155);
+        color: white;
+        padding: 6px 20px;
+        border: none;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        cursor: pointer;
+    }
+    .count_wrong {
+        background-color: rgb(208, 0, 0);
+    }
+    p {
+        color: rgb(67, 145, 155);
+        font-weight: 500;
+    }
+    .count_correct_number, .count_wrong_number {
+        color: black;
+    }
+    .result_btn {
+        width: 100%;
+        padding: 8px;
+        background-color: green;
+        border: none;
+        color: white;
+        font-weight: 600;
+        letter-spacing: 1px;
+        border-radius: 5px;
+        margin: 10px 0;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div class="calculation">
+        <h1 class="heading">RRB Marks Count</h1>
+        <div class="counter">
+            <p>Number of Correct Answers</p>
+            <h1 class="count_correct_number">0</h1>
+            <button type="button" class="count_btn" onclick="Correct_Counter()">Count</button>
+        </div>
+        <div class="counter worng_counter">
+            <p style="color: rgb(208, 0, 0);">Number of Wrong Answers</p>
+            <h1 class="count_wrong_number">0</h1>
+            <button type="button" class="count_btn count_wrong" onclick="Wrong_Counter()">Count</button>
+        </div>
+        <div class="result">
+            <button type="button" class="result_btn" onclick="Result()">Check Marks</button>
+            <p style="color: black;">Total number after Negative Marking</p>
+            <h1><span class="marks">0</span>/100</h1>
+        </div>    
+    </div>
+    <!-- scripts -->
+    <script>
+        let count_correct_number = 0; 
+        let count_wrong_number = 0; 
+
+        const Correct_Counter = () => {
+            count_correct_number++; 
+            document.getElementsByClassName('count_correct_number')[0].innerText = count_correct_number;
+        }
+        const Wrong_Counter = () => {
+            count_wrong_number++; 
+            document.getElementsByClassName('count_wrong_number')[0].innerText = count_wrong_number;
+        }
+        const Result = () => {
+            let total_marks = 0;
+            total_marks = (count_correct_number - count_wrong_number/3).toFixed(2);
+            setTimeout(()=> {
+                document.getElementsByClassName('marks')[0].innerText = total_marks;
+                document.getElementsByClassName('marks')[0].style.color = "green";
+            },1000)
+        }
+    </script>
+</body>
+</html>
